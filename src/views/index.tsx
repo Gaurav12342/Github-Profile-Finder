@@ -1,9 +1,8 @@
 import { FC } from "react";
-import logo from "../img/pic.svg";
+import logo from "img/pic.svg";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import CardMedia from "@mui/material/CardMedia";
+import { GitbubRepo, Profile, Search } from "components/index";
 
 const Root: FC = () => {
   return (
@@ -14,17 +13,14 @@ const Root: FC = () => {
       </div>
 
       <div className="my-5">
-        <input type={"text"} className="w-80 text-slate-900 px-8 text-center" />
+        <Search placeholder="Tdsest" />
       </div>
 
       <div className="flex space-x-8">
         <div>
           <Card sx={{ width: 345, backgroundColor: "#4f5868" }}>
             <div className="mt-1 flex justify-center">
-              <img
-                className={"rounded-full w-44"}
-                src="https://avatars.githubusercontent.com/u/75033935?s=48&v=4"
-              />
+              <Profile src="https://avatars.githubusercontent.com/u/75033935?s=48&v=4" />
             </div>
             <CardContent>
               <hr className="border-b-1 border-gray-400" />
@@ -62,19 +58,7 @@ const Root: FC = () => {
 
         <div>
           {[1, 2, 3, 4, 5]?.map((data) => {
-            return (
-              <Card
-                sx={{
-                  width: 345,
-                  backgroundColor: "#4f5868",
-                  marginBottom: 2,
-                }}
-              >
-                <CardContent>
-                  <p className="text-indigo-400">Github Finder</p>
-                </CardContent>
-              </Card>
-            );
+            return <GitbubRepo title={"Github Finder1"} />;
           })}
         </div>
       </div>
