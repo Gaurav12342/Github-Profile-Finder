@@ -1,12 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Root from "./views/index";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <Root />
+        {/* <img src={logo} className="App-logo" alt="logo" />
         <p className='bg-red-600'>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -17,7 +19,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+        </a> */}
       </header>
     </div>
   );
