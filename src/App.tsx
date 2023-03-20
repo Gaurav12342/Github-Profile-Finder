@@ -1,28 +1,19 @@
-import React from "react";
-import logo from "./logo.svg";
+import { FC } from "react";
 import "./App.css";
 import Root from "./views/index";
+import { Provider } from "react-redux";
+import { store } from "store";
 
-function App() {
+const App: FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <Root />
-        {/* <img src={logo} className="App-logo" alt="logo" />
-        <p className='bg-red-600'>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
+        <Provider store={store}>
+          <Root />
+        </Provider>
       </header>
     </div>
   );
-}
+};
 
 export default App;

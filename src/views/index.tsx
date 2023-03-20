@@ -1,10 +1,21 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import logo from "img/pic.svg";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { GitbubRepo, Profile, Search } from "components/index";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserDetail, userDetails } from "store/UserDetail/userDetailSlice";
 
 const Root: FC = () => {
+  const dispatch: any = useDispatch();
+  const userDetailsData = useSelector(userDetails);
+
+  useEffect(() => {
+    
+    dispatch(getUserDetail);
+  }, [dispatch]);
+
+  console.log("userDetailsData =>", userDetailsData);
   return (
     <div>
       <div>
