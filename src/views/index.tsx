@@ -11,11 +11,11 @@ const Root: FC = () => {
   const userDetailsData = useSelector(userDetails);
 
   useEffect(() => {
-    
-    dispatch(getUserDetail);
+    dispatch(getUserDetail());
   }, [dispatch]);
 
   console.log("userDetailsData =>", userDetailsData);
+  console.log('Env data =>',process.env.REACT_APP_GITHUB_TOKEN)
   return (
     <div>
       <div>

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "util/axiosInterceptor";
 
 export interface IInitialState {
   loading: boolean;
@@ -14,16 +14,10 @@ export const initialState: IInitialState = {
 };
 
 export const getUserDetail = createAsyncThunk("user detail", () => {
-    debugger
   return axios
-    .get("https://api.github.com/users/gaurav12342/repos", {
-      headers: {
-        Authorization:
-          "Bearer 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",
-      },
-    })
+    .get("gaurav12342/repos")
     .then((res: any) => {
-      return res;
+      if (res?.status === 200) return res?.data;
     })
     .catch((error) => {
       console.log("Error =>", error);
@@ -31,7 +25,7 @@ export const getUserDetail = createAsyncThunk("user detail", () => {
 });
 
 export const userDetailSlice = createSlice({
-  name: "Github login user detail",
+  name: "user detail",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -55,8 +49,8 @@ export const userDetailSlice = createSlice({
   },
 });
 
-export const userDetailStatus = (state: any) => state.userDetail.loading;
-export const userDetails = (state: any) => state.userDetail.data;
-export const userDetailError = (state: any) => state.userDetail.error;
+export const userDetailStatus = (state: any) => state?.userDetail?.loading;
+export const userDetails = (state: any) => state?.userDetail?.data;
+export const userDetailError = (state: any) => state?.userDetail?.error;
 
 export default userDetailSlice.reducer;
