@@ -15,12 +15,12 @@ export const initialState: IInitialState = {
 
 export const getUserDetail = createAsyncThunk("user detail", () => {
   return axios
-    .get("gaurav12342/repos")
+    .get("gaurav12342")
     .then((res: any) => {
       if (res?.status === 200) return res?.data;
     })
     .catch((error) => {
-      console.log("Error =>", error);
+      return error;
     });
 });
 

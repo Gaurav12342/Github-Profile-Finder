@@ -15,7 +15,9 @@ const Root: FC = () => {
   }, [dispatch]);
 
   console.log("userDetailsData =>", userDetailsData);
-  console.log('Env data =>',process.env.REACT_APP_GITHUB_TOKEN)
+
+  const { avatar_url, name, bio, company, location, followers, following } =
+    userDetailsData;
   return (
     <div>
       <div>
@@ -31,37 +33,37 @@ const Root: FC = () => {
         <div>
           <Card sx={{ width: 345, backgroundColor: "#4f5868" }}>
             <div className="mt-1 flex justify-center">
-              <Profile src="https://avatars.githubusercontent.com/u/75033935?s=48&v=4" />
+              <Profile src={avatar_url} />
             </div>
             <CardContent>
               <hr className="border-b-1 border-gray-400" />
               <div className="flex justify-start py-3">
-                <p className="text-white font-bold">Name: </p>
+                <p className="text-white font-bold">Name: {name}</p>
               </div>
 
               <hr className="border-b-1 border-gray-400" />
               <div className="flex justify-start py-3">
-                <p className="text-white font-bold">Bio: </p>
+                <p className="text-white font-bold">Bio: {bio}</p>
               </div>
 
               <hr className="border-b-1 border-gray-400" />
               <div className="flex justify-start py-3">
-                <p className="text-white font-bold">Company: </p>
+                <p className="text-white font-bold">Company: {company}</p>
               </div>
 
               <hr className="border-b-1 border-gray-400" />
               <div className="flex justify-start py-3">
-                <p className="text-white font-bold">Location: </p>
+                <p className="text-white font-bold">Location: {location}</p>
               </div>
 
               <hr className="border-b-1 border-gray-400" />
               <div className="flex justify-start py-3">
-                <p className="text-white font-bold">Followers: </p>
+                <p className="text-white font-bold">Followers: {followers}</p>
               </div>
 
               <hr className="border-b-1 border-gray-400" />
               <div className="flex justify-start py-3">
-                <p className="text-white font-bold">Following: </p>
+                <p className="text-white font-bold">Following: {following}</p>
               </div>
             </CardContent>
           </Card>
