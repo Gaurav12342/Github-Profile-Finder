@@ -5,16 +5,17 @@ import CardContent from "@mui/material/CardContent";
 import { GitbubRepo, Profile, Search } from "components/index";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserDetail, userDetails } from "store/UserDetail/userDetailSlice";
+import { getUserRepos, userRepos } from "store/UserRepo/userRepoSlice";
 
 const Root: FC = () => {
   const dispatch: any = useDispatch();
   const userDetailsData = useSelector(userDetails);
+  const userReposData = useSelector(userRepos);
 
   useEffect(() => {
     dispatch(getUserDetail());
+    dispatch(getUserRepos());
   }, [dispatch]);
-
-  console.log("userDetailsData =>", userDetailsData);
 
   const { avatar_url, name, bio, company, location, followers, following } =
     userDetailsData;
@@ -70,8 +71,8 @@ const Root: FC = () => {
         </div>
 
         <div>
-          {[1, 2, 3, 4, 5]?.map((data) => {
-            return <GitbubRepo title={"Github Finder1"} />;
+          {userReposData?.map((data: any) => {
+            return <GitbubRepo title={data?.name} />;
           })}
         </div>
       </div>
