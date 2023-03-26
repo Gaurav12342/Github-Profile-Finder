@@ -13,16 +13,19 @@ export const initialState: IInitialState = {
   error: "",
 };
 
-export const getUserDetail = createAsyncThunk("user detail", () => {
-  return axios
-    .get("gaurav12342")
-    .then((res: any) => {
-      if (res?.status === 200) return res?.data;
-    })
-    .catch((error) => {
-      return error;
-    });
-});
+export const getUserDetail = createAsyncThunk(
+  "user detail",
+  (value: string) => {
+    return axios
+      .get(value)
+      .then((res: any) => {
+        if (res?.status === 200) return res?.data;
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
+);
 
 export const userDetailSlice = createSlice({
   name: "user detail",
