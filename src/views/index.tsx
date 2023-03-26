@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import logo from "img/pic.svg";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -6,11 +6,13 @@ import { GitbubRepo, Profile, Search } from "components/index";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserDetail, userDetails } from "store/UserDetail/userDetailSlice";
 import { getUserRepos, userRepos } from "store/UserRepo/userRepoSlice";
+import { useDebounce } from "hooks/useDebounce";
 
 const Root: FC = () => {
   const dispatch: any = useDispatch();
   const userDetailsData = useSelector(userDetails);
   const userReposData = useSelector(userRepos);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     dispatch(getUserDetail());
@@ -19,6 +21,14 @@ const Root: FC = () => {
 
   const { avatar_url, name, bio, company, location, followers, following } =
     userDetailsData;
+
+  const result = useDebounce(search, 1000);
+  console.log("result =>", result);
+  
+  // useEffect(() => {
+  
+  // }, [result]);
+
   return (
     <div>
       <div>
@@ -27,7 +37,10 @@ const Root: FC = () => {
       </div>
 
       <div className="my-5">
-        <Search placeholder="Tdsest" />
+        <Search
+          placeholder="Tdsest"
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </div>
 
       <div className="flex space-x-8">
