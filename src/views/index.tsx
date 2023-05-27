@@ -39,7 +39,7 @@ const Root: FC = () => {
 
   return (
     <div>
-      <div>
+      <div className="flex flex-col">
         <img src={logo} className="h-64" alt="logo" />
         <h1 className="text-3xl font-bold text-indigo-400">GitHub Thinker</h1>
       </div>
@@ -52,7 +52,7 @@ const Root: FC = () => {
       </div>
       {detailLoader && repoLoader ? (
         <>
-          <CircularProgress />
+          <CircularProgress />+
         </>
       ) : (
         <div className="flex space-x-8">
@@ -106,7 +106,7 @@ const Root: FC = () => {
             {userReposData?.map((data: any) => {
               return (
                 <div>
-                  <GitbubRepo title={data?.name} />
+                  <GitbubRepo repoLink={data?.svn_url} title={data?.name} />
                 </div>
               );
             })}

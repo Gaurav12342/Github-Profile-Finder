@@ -1,12 +1,18 @@
 import { FC } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import { link } from "fs";
 
 export interface IGitbubRepoProps {
   title: string;
+  repoLink?: string;
 }
 
-const GitbubRepo: FC<IGitbubRepoProps> = ({ title }) => {
+const GitbubRepo: FC<IGitbubRepoProps> = ({ title, repoLink }) => {
+  const navigateUrl = () => {
+    window.open(repoLink, "_blank");
+  };
+
   return (
     <div>
       <Card
@@ -17,7 +23,9 @@ const GitbubRepo: FC<IGitbubRepoProps> = ({ title }) => {
         }}
       >
         <CardContent>
-          <p className="text-indigo-400">{title}</p>
+          <p onClick={navigateUrl} className="text-indigo-400 cursor-pointer">
+            {title}
+          </p>
         </CardContent>
       </Card>
     </div>

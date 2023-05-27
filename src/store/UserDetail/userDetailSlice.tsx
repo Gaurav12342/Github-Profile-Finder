@@ -1,9 +1,19 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "util/axiosInterceptor";
 
+// avatar_url, name, bio, company, location, followers, following
+interface IData {
+  avatar_url?: string;
+  bio?: null;
+  company?: null;
+  followers?: number;
+  following?: number;
+  location?: string;
+  name?: string;
+}
 export interface IInitialState {
   loading: boolean;
-  data: any;
+  data?: IData;
   error: string;
 }
 
@@ -19,6 +29,7 @@ export const getUserDetail = createAsyncThunk(
     return axios
       .get(value)
       .then((res: any) => {
+        console.log("abc =>", res?.data);
         if (res?.status === 200) return res?.data;
       })
       .catch((error) => {
@@ -32,23 +43,26 @@ export const userDetailSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getUserDetail.pending, (state) => {
+    builder.addCase(getUserDetail.pending, (state: IInitialState) => {
       state.loading = true;
       state.data = {};
       state.error = "";
     });
 
-    builder.addCase(getUserDetail.fulfilled, (state, action) => {
+    builder.addCase(getUserDetail.fulfilled, (state: IInitialState, action) => {
       state.loading = false;
       state.data = action.payload;
       state.error = "";
     });
 
-    builder.addCase(getUserDetail.rejected, (state, action: any) => {
-      state.loading = false;
-      state.data = {};
-      state.error = action.error;
-    });
+    // builder.addCase(
+    //   getUserDetail.rejected,
+    //   (state: IInitialState, action: PayloadAction<string>) => {
+    //     state.loading = false;
+    //     state.data = {};
+    //     state.error = action.error;
+    //   }
+    // );
   },
 });
 
